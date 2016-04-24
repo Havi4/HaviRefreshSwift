@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2C2D83A11CCCB9EA005C31E6 /* SwiftFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C2D83A01CCCB9EA005C31E6 /* SwiftFooterView.swift */; };
 		2C428BC81CC9CAFD00A67D7C /* PullBundle.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 2C428BC71CC9CAFD00A67D7C /* PullBundle.bundle */; };
 		2C60D9691CC916550060A27C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60D9681CC916550060A27C /* AppDelegate.swift */; };
 		2C60D96B1CC916550060A27C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C60D96A1CC916550060A27C /* ViewController.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C2D83A01CCCB9EA005C31E6 /* SwiftFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftFooterView.swift; sourceTree = "<group>"; };
 		2C428BC71CC9CAFD00A67D7C /* PullBundle.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PullBundle.bundle; sourceTree = "<group>"; };
 		2C60D9651CC916550060A27C /* SwiftRefresh.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftRefresh.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C60D9681CC916550060A27C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				2C60D9991CC91D610060A27C /* HaviRefreshExtension.swift */,
 				2C60D99D1CC91FA30060A27C /* SwiftConstDefine.swift */,
 				2C60D99B1CC91E610060A27C /* SwiftHeaderView.swift */,
+				2C2D83A01CCCB9EA005C31E6 /* SwiftFooterView.swift */,
 				2C428BC71CC9CAFD00A67D7C /* PullBundle.bundle */,
 			);
 			path = RereshClass;
@@ -282,6 +285,7 @@
 				2C60D99C1CC91E610060A27C /* SwiftHeaderView.swift in Sources */,
 				2C60D96B1CC916550060A27C /* ViewController.swift in Sources */,
 				2C60D9691CC916550060A27C /* AppDelegate.swift in Sources */,
+				2C2D83A11CCCB9EA005C31E6 /* SwiftFooterView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

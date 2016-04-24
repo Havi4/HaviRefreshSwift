@@ -30,6 +30,14 @@ extension UIScrollView:UIScrollViewDelegate
         }
     }
     
+    public var footerLoadMoreView: SwiftFooterView? {
+        get {
+            let footerLoadMoreView = viewWithTag(SwiftFootViewTag);
+            return footerLoadMoreView as? SwiftFooterView;
+            
+        }
+    }
+    
     //下拉刷新操作，默认是用activeacindicator这个是必须调用的方法
     
     public func pullDownRefresh(action:(()->Void)){//参数是action类型是（）-> Void

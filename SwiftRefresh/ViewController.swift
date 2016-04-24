@@ -48,7 +48,6 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         
         // 上拉动画
         self.tableView.headerRefreshAnimationStatus(.headerViewRefreshPullAnimation, pullImages: animationImages, loadingImages: loadAnimationImages);
-        self.tableView.headerRefreshAnimationStatus(.headerViewRefreshArrowAnimation, pullImages: [], loadingImages: []);
 
         tableView.pullDownRefresh{ () -> Void in
             weakSelf?.delay(2.0, closure: { () -> () in})
