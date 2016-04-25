@@ -11,10 +11,13 @@ import UIKit
 class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource{
     
     var tableView:UITableView = UITableView();
-    
+    var datas:Int = 10;
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         weak var weakSelf = self as ViewController;
         // Do any additional setup after loading the view, typically from a nib.
         self.view.backgroundColor = UIColor.whiteColor();
@@ -47,16 +50,34 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         }
         
         // 上拉动画
-        self.tableView.headerRefreshAnimationStatus(.headerViewRefreshPullAnimation, pullImages: animationImages, loadingImages: loadAnimationImages);
+//        self.tableView.headerRefreshAnimationStatus(.headerViewRefreshPullAnimation, pullImages: animationImages, loadingImages: loadAnimationImages);
 
         tableView.pullDownRefresh{ () -> Void in
-            weakSelf?.delay(2.0, closure: { () -> () in})
             weakSelf?.delay(2.0, closure: { () -> () in
                 print("nowRefresh success")
+                weakSelf?.datas = 10;
                 weakSelf?.tableView.reloadData();
                 weakSelf?.tableView.doneRefresh()
             })
         };
+        
+        self.tableView.hiddenFooterView();
+        tableView.loadMoreRefresh { () -> () in
+            weakSelf?.delay(0.5, closure: { () -> () in})
+            weakSelf?.delay(0.5, closure: { () -> () in
+                print("toLoadMoreAction success")
+                if weakSelf!.datas < 40 {
+                    weakSelf!.datas += (Int)(arc4random_uniform(10)) + 1;
+                    weakSelf?.tableView.reloadData()
+                }else {
+                    // 数据加载完毕
+                    weakSelf?.tableView.endLoadMoreData();
+                }
+                self.tableView.showFooterView();
+                weakSelf?.tableView.doneRefresh();
+            })
+        }
+
     }
     
     func delay(delay:Double, closure:()->()) {
@@ -74,7 +95,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
      */
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 100;
+        return datas;
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {

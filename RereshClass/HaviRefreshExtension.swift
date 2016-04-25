@@ -10,6 +10,8 @@ import UIKit
 
 let animations:CGFloat = 60.0;
 var refreshStatus:RefreshStatus = .Normal;
+var isFooterViewHidden:Bool?;
+var loadMoreAction: (() -> ()) = {};
 
 public enum RefreshStatus{
     case Normal, Refresh, LoadMore
@@ -36,6 +38,33 @@ extension UIScrollView:UIScrollViewDelegate
             return footerLoadMoreView as? SwiftFooterView;
             
         }
+    }
+    
+    //上拉加载
+    
+    public func showFooterView(){
+        isFooterViewHidden = false;
+        self.footerLoadMoreView?.hidden = false;
+    }
+    
+    public func hiddenFooterView(){
+        isFooterViewHidden = true;
+        self.footerLoadMoreView?.hidden = true;
+    }
+    
+    public func loadMoreRefresh(action:(() -> Void)){
+        self.alwaysBounceVertical = true;
+        loadMoreAction = action;
+        if self.footerLoadMoreView == nil {
+            let footView = SwiftFooterView(action: action, frame: CGRectMake( 0 , UIScreen.mainScreen().bounds.size.height - SwiftRefreshFootViewHeight, self.frame.size.width, SwiftRefreshFootViewHeight));
+            footView.scrollView = self
+            if (isFooterViewHidden != nil){
+                footView.hidden = isFooterViewHidden!;
+            }
+            footView.tag = SwiftFootViewTag;
+            self.addSubview(footView);
+        }
+
     }
     
     //下拉刷新操作，默认是用activeacindicator这个是必须调用的方法
@@ -86,7 +115,12 @@ extension UIScrollView:UIScrollViewDelegate
         if let headerView:SwiftHeaderView = self.viewWithTag(SwiftHeadViewTag) as? SwiftHeaderView {
             headerView.stopAnimation();
         }
-        refreshStatus = .Normal
+        refreshStatus = .Normal;
+    }
+    
+    public func endLoadMoreData() {
+        let footView:SwiftFooterView = self.viewWithTag(SwiftFootViewTag) as! SwiftFooterView;
+        footView.isEndloadMore = true;
     }
     
     //footer
